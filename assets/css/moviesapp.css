@@ -1,0 +1,46 @@
+* {
+    padding: 0px;
+    margin: 0px;
+    font-size: 25px;
+}
+
+form {
+    padding: 10px;
+
+    /* display: block; */
+}
+
+/* input {
+    /* display: block; */
+/* margin: 3px; */
+/* border-radius: 5px; */
+/* background-color: inherit; */
+/* text-align: center; */
+/* } */
+input,
+label {
+    margin: 7px;
+    border-radius: 10px;
+    border: none;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+}
+
+.container {
+    margin: 5% 25%;
+    background-color: rgba(0, 0, 0, 0.252);
+    /* width: 250px; */
+    padding: 10px;
+    width:fit-content;
+
+    border-radius: 10px;
+    text-align:center;
+}
+
+body {
+    background-image: url("/assets/images/sign-up.webp");
+    background-size: cover;
+    /* text-align: center; */
+}
