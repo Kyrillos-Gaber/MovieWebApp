@@ -26,6 +26,7 @@ function saveInfo() {
     localStorage.setItem("Email:", email)
 }
 function loginVal() {
+
     var userName = localStorage.getItem("userName:")
     var pass = localStorage.getItem("Password:");
     var loginUser = document.getElementById("lgNuser").value;
@@ -38,8 +39,16 @@ function loginVal() {
 
 
     }
-    else {
-
+    else {   
+        document.cookie = `username=${userName};expires=Mon, 1 Jan 2023 00:00:00 `
+        document.cookie = `password=${pass};expires=Mon, 1 Jan 2023 00:00:00 `
+        document.getElementById("user").innerHTML=userName;
     }
+
+}
+function logOut() {
+    document.cookie = `username=;expires=Mon, 1 Jan 2022 00:00:00 `
+    document.cookie = `password=;expires=Mon, 1 Jan 2022 00:00:00 `
+
 
 }
