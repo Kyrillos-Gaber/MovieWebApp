@@ -1,5 +1,10 @@
 const myApiKey = "e79657d3967122271ab763157ef41f37";
 
+let moviesCounter = 0;
+let allMovies = [];
+
+
+
 function generateMoviesCards(apiUrl, containerId) {
   let movieRequest = new XMLHttpRequest();
   movieRequest.open("GET", apiUrl);
@@ -7,16 +12,33 @@ function generateMoviesCards(apiUrl, containerId) {
 
   let moviesObjs;
 
+  let favoriteMovies = JSON.parse(loadMoviesFromStorage());
+
   movieRequest.onload = function() {
 
     if (movieRequest.readyState == 4 && movieRequest.status == 200) {
       moviesObjs = JSON.parse(movieRequest.responseText).results;
-
+      // push new movies to use globaly
+      allMovies.push(...moviesObjs) ;
       let container = document.getElementById(containerId);
       
       for (let movie of moviesObjs) {
-        container.innerHTML += 
-        `<li>
+        let flag = false;
+        if (favoriteMovies) {
+          for (let favMovie of favoriteMovies){
+            flag = movie.id === favMovie.id;
+            if (flag) break;
+          }
+        }
+        movieCardGenerator(movie, container, flag);
+      }
+    }
+  }
+}
+
+function movieCardGenerator(movie, container, isFav) {
+  container.innerHTML += 
+        `<li onclick="openMovieDetails(${moviesCounter})">
         <div class="movie-card">
 
           <a href="./movie-details.html">
@@ -35,7 +57,7 @@ function generateMoviesCards(apiUrl, containerId) {
 
           <div class="card-meta">
             <div class="badge badge-outline">HD</div>
-
+            <i class="${isFav? 'fa-solid' : 'fa-regular'} fa-heart" id="icon${moviesCounter}" onclick="ToggleFavorite(${moviesCounter++})"></i>
             <div class="duration">
               <ion-icon name="time-outline"></ion-icon>
 
@@ -51,18 +73,13 @@ function generateMoviesCards(apiUrl, containerId) {
 
         </div>
       </li>`;
-      }
-    }
-  }
 }
 
 function clearInnerHtml(tagId) {
   document.getElementById(tagId).innerHTML = "";
 }
 
-let upcomingMoviesPageCount = 1;
-const upcomingMoviesUrl = `https://api.themoviedb.org/3/movie/upcoming?api_key=${myApiKey}&language=en-US&page=${upcomingMoviesPageCount}`;
-generateMoviesCards(upcomingMoviesUrl, "upcoming-movies");
+
 
 
 let topRatedMoviesPageCount = 1;
@@ -79,4 +96,53 @@ function loadTopTV(){
   generateMoviesCards(topRatedtvUrl, "top-rated");
 }
 
-loadTopMovies();
+// Movie Card click Event to open movie details
+function openMovieDetails(movieIndex) {
+  let movieJson = JSON.stringify(allMovies[movieIndex]);
+  localStorage.removeItem("movieToOpen");
+  localStorage.setItem("movieToOpen", movieJson);
+}
+
+
+
+function ToggleFavorite(index) {
+  let icon = document.getElementById(`icon${index}`);
+  if (icon.classList.contains("fa-regular")){
+    icon.classList.replace("fa-regular", "fa-solid");
+    addToFavorite(allMovies[index]);
+  }
+  else{
+    icon.classList.replace("fa-solid", "fa-regular");
+  let movies = loadMoviesFromStorage();
+    removeFromFavorite(allMovies[index]);
+  }
+}
+
+function loadMoviesFromStorage() {
+  return localStorage.getItem("favorite");
+}
+
+function saveInStorage(objs){
+  localStorage.setItem("favorite", JSON.stringify(objs));
+}
+
+function addToFavorite(movie) {
+  let movies = new Array();
+  let jsnStr = loadMoviesFromStorage();
+  if (jsnStr) {
+    movies.push(...JSON.parse(jsnStr));
+  }
+  movies.push(movie);
+  saveInStorage(movies);
+}
+
+function removeFromFavorite (movie) {
+  let movies = JSON.parse(loadMoviesFromStorage());
+  for (let i in movies){
+    if (movies[i].id === movie.id){
+      movies.splice(i, 1);
+    }
+  }
+  saveInStorage(movies);
+}
+
