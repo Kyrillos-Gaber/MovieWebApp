@@ -126,7 +126,7 @@ function loginVal() {
     var pass = localStorage.getItem("Password:");
     var loginUser = document.getElementById("lgNuser").value;
     var loginPass = document.getElementById("login-Pass").value;
-    if (loginUser !== userName && loginPass !== pass) {
+    if (loginUser !== userName || loginPass !== pass) {
         event.preventDefault();
         var notify = document.getElementById("noMatch");
         notify.style.display = "block";
@@ -156,6 +156,7 @@ function logOut() {
 
 
 function userNam() {
+    document.onload
     var userNameLocal = localStorage.getItem("userName:")
     var user = document.getElementById("user");
     user.textContent = userNameLocal;
@@ -220,5 +221,12 @@ else{
 
 }
 
+function redirect(){
+    var userName = localStorage.getItem("userName:");
+    var pass = localStorage.getItem("Password:");
+    if(userName==null||pass==null){
+        window.location.href="login.html";
+    }
+}
+
 userNam();
-showPass();
