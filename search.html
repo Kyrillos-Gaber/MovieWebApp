@@ -5,8 +5,8 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Free Guy 2021</title>
-  <link rel="stylesheet" href="./assets/css/all.min.css">
+  <title>Filmlane - Best movie collections</title>
+
   <!-- 
     - favicon
   -->
@@ -15,8 +15,8 @@
   <!-- 
     - custom css link
   -->
+  <link rel="stylesheet" href="./assets/css/all.min.css">
   <link rel="stylesheet" href="./assets/css/style.css">
-
   <!-- 
     - google font link
   -->
@@ -25,7 +25,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 
-<body id="#top">
+<body id="top" onload="makeSure()">
 
   <!-- 
     - #HEADER
@@ -59,7 +59,7 @@
           </select>
         </div>
 
-       <a href="login.html"> <button class="btn btn-primary">Sign in</button></a>
+        <a href="login.html" id="check">  <button class="btn btn-primary">Sign in</button></a>
 
       </div>
 
@@ -88,7 +88,7 @@
           </li>
 
           <li>
-            <a href="#" class="navbar-link">Movie</a>
+            <a href="#upcoming" class="navbar-link">Movie</a>
           </li>
 
           <li>
@@ -96,7 +96,7 @@
           </li>
 
           <li>
-            <a href="#" class="navbar-link">Web Series</a>
+            <a href="./profile.html" class="navbar-link">profile</a>
           </li>
 
           <li>
@@ -148,104 +148,63 @@
 
 
 
-  <main>
-    <article>
+ 
 
       <!-- 
-        - #MOVIE DETAIL
+        - #UPCOMING
       -->
 
-      <section id="movie-datail" class="movie-detail">
-        <div class="bg-extra-layer"></div>
+
+
+      <section class="top-rated">
         <div class="container">
 
-          <figure class="movie-detail-banner">
+          <p class="section-subtitle">Online Streaming</p>
 
-            <img id="movie-detail-banner" src="./assets/images/movie-4.png" alt="Free guy movie poster">
-
-            <button class="play-btn">
-              <ion-icon name="play-circle-outline"></ion-icon>
-            </button>
-
-          </figure>
-
-          <div class="movie-detail-content">
-
-            <p class="detail-subtitle">New Episodes</p>
-
-            <h1 id="movie-name" class="h1 detail-title">
-              Free <strong>Guy</strong>
-            </h1>
-
-            <div class="meta-wrapper">
-
-              <div class="badge-wrapper">
-                <div class="badge badge-fill">PG 13</div>
-
-                <div class="badge badge-outline">HD</div>
-              </div>
-
-              <div class="ganre-wrapper">
-                <a href="#">Comedy,</a>
-
-                <a href="#">Action,</a>
-
-                <a href="#">Adventure,</a>
-
-                <a href="#">Science Fiction</a>
-              </div>
-
-              <div class="date-time">
-
-                <div>
-                  <ion-icon name="calendar-outline"></ion-icon>
-
-                  <time id="date" datetime="2021">2021</time>
-                </div>
-
-                <div>
-                  <ion-icon name="time-outline"></ion-icon>
-
-                  <time datetime="PT115M">115 min</time>
-                </div>
-
-              </div>
+          <h2 class="h2 section-title">Search Movies</h2>
+          <input type="search" name="search" class="search"  onkeyup="searchFunc()" id="search" placeholder="shearch here">
+            <div>   
+                         <label for="volume" style="color: white;">vote average gte</label> <p id="showVolume"></p>
+              <input type="range" class="range"id="volume" name="volume" onclick="valueRange()" min="0" max="8">
 
             </div>
+          <!-- <ul class="filter-list">
 
-            <p id="storyline" class="storyline">
-              A bank teller called Guy realizes he is a background character in an open world video game called Free
-              City that will
-              soon go offline.
-            </p>
+            <li>
+              <button class="filter-btn">Movies</button>
+            </li>
 
-            <div class="details-actions">
+            <li>
+              <button  class="filter-btn">TV Shows</button>
+            </li>
 
-              <button class="share">
-                <ion-icon name="share-social"></ion-icon>
+            <li>
+              <button class="filter-btn">Documentary</button>
+            </li>
 
-                <span>Share</span>
-              </button>
+            <li>
+              <button class="filter-btn">Sports</button>
+            </li>
 
-              <div class="title-wrapper">
-                <p class="title">Prime Video</p>
+          </ul> -->
 
-                <p class="text">Streaming Channels</p>
-              </div>
+          <ul id="top-rated" class="movies-list">
 
-              <button class="btn btn-primary">
-                <ion-icon name="play"></ion-icon>
+            <!-- top rated movies will be generated here -->
 
-                <span>Watch Now</span>
-              </button>
-
-            </div>
-
-          </div>
+          </ul>
 
         </div>
       </section>
-    </article>
+
+
+
+
+
+
+
+
+
   </main>
 
 
@@ -286,7 +245,7 @@
             </li>
 
             <li>
-              <a href="#" class="footer-link">Pricing</a>
+              <a href="./search.html" class="footer-link">search</a>
             </li>
 
           </ul>
@@ -380,7 +339,9 @@
 
 
 
-  <script src="./assets/js/injectMovieDetails.js"></script>
+  <script src="./assets/js/getMovies.js"></script>
+  <script src="./assets/js/search.js"></script>
+  <script src="./assets/js/moviesapp.js"></script>
 
 </body>
 

@@ -52,7 +52,7 @@ function movieCardGenerator(movie, container, isFav) {
               <h3 class="card-title">${movie.original_title? movie.original_title : movie.name}</h3>
             </a>
 
-            <time datetime="2022">${movie.release_date? movie.release_date.substring(0,4) : movie.first_air_date.substring(0,4)}</time>
+            <time datetime="2022">${movie.release_date? movie.release_date.substring(0,4) : movie.first_air_date? movie.first_air_date.substring(0,4):""}</time>
           </div>
 
           <div class="card-meta">
