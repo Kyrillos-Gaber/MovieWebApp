@@ -12,17 +12,18 @@
 <body>
     <div class="container">
         <h3>Signup</h3>
-        <form action="login.html">
+        <p> already has an account?   <a href="login.html" style="text-decoration: none; color:green; font-weight: bolder;">Login</a></p>
+        <form action="login.html" onsubmit="userVal();passCheck();gDate()">
 
             <div class="form-group"><label for="username">username:</label>
-                <input type="text" name="username" id="username" placeholder="  username" onblur="userVal();">
+                <input type="text" name="username" id="username" placeholder="  username" onkeyup="userVal();">
                 <small id="usrwarn" style="display: none;">must be a string</small>
             </div>
             
 
             <div class="form-group"> <label for="pasword">Password:</label>
                 <input type="password" name="password" id="password" placeholder=" Enter your password"
-                    onblur="passCheck();">
+                onkeyup="passCheck();">
                 <br>
 
 
@@ -35,18 +36,18 @@
                    
             </div>
             <div class="form-group"><label for="email">Email</label>
-                <input type="email" name="email" id="email" placeholder="Enter your email" onblur="emailVal()">
+                <input type="email" name="email" id="email" placeholder="Enter your email" onkeyup="emailVal()">
                 <small id="emailwarn" style="display: none;">not match</small>
             </div>
             <div class="form-group"><label for="d" >Date Of Birth</label>
-              <input type="date" name="d" id="d" onblur="gDate()">
+              <input type="date" name="d" id="d" onmouseleave="gDate()">
               <small id="datewarn" style="display: none;">not match</small>
             </div>
        
             <div class="form-group">
                 <input type="submit" value="Register" width="200px"
                     style="background-color: green; color: white; padding: 20px; text-align: center;"
-                    onclick="saveInfo()">
+                    onclick="saveInfo(); ">
             </div>
 
 

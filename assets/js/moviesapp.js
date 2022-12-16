@@ -4,7 +4,7 @@
 
 // 
 var password = document.getElementById("password");
-console.log(password)
+
 
 /// password check
 function passCheck() {
@@ -112,6 +112,8 @@ function saveInfo() {
     localStorage.setItem("userName:", nam);
     localStorage.setItem("Password:", password);
     localStorage.setItem("Email:", email)
+
+
 }
 
 
