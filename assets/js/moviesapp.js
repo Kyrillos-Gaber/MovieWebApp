@@ -105,6 +105,7 @@ function showPass() {
 
 
 
+
 function saveInfo() {
     var password = document.getElementById("password").value;
     var nam = document.getElementById("username").value;
@@ -228,6 +229,22 @@ function redirect(){
     var pass = localStorage.getItem("Password:");
     if(userName==null||pass==null){
         window.location.href="login.html";
+    }
+}
+function makeSure(){
+    var userName = localStorage.getItem("userName:");
+    if(document.cookie){
+      var us=  document.getElementById("check");
+      us.innerHTML=userName;
+      us.href="profile.html";
+us.style.color="white";
+us.style.border="solid";
+us.style.padding="20px";
+us.style.borderRadius="30px";
+us.style.width="150px";
+us.style.textAlign="center";
+us.style.fontSize="25px";
+us.style.fontWeight="bold";
     }
 }
 
